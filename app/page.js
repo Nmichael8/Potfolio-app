@@ -1,69 +1,204 @@
-import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
 
-export default function Home() {
+const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+
+const experience = [
+  {
+    company: "United Bank For Africa (UBA) Head Office",
+    role: "IT Care Intern",
+    period: "06/2026 – 10/2026",
+    location: "Lagos Island, Lagos",
+    points: [
+      "Assisted with the creation, modification, maintenance, deactivation and re-enablement of staff accounts.",
+      "Performed basic network connectivity checks using ping tests to help troubleshoot branch connectivity issues.",
+      "Developed hands-on knowledge of user access management, Active Directory, and banking technology processes.",
+    ],
+  },
+  {
+    company: "Maxim (AI Analytics)",
+    role: "Intern",
+    period: "",
+    location: "",
+    points: [
+      "Observed how data is used to support business intelligence, decision-making, and operational efficiency.",
+      "Strengthened knowledge of how IT, data analytics, and AI support modern banking operations.",
+    ],
+  },
+  {
+    company: "Nikky Taurus",
+    role: "Audit Intern",
+    period: "03/2025 – 04/2025",
+    location: "Maryland, Lagos",
+    points: [
+      "Assisted with reviewing and reconciling monthly vehicle rental records and financial transactions.",
+      "Assisted in verifying invoices, payment records, and supporting documents.",
+      "Gained practical experience in auditing, reconciliation, and internal control procedures.",
+    ],
+  },
+  {
+    company: "Spring Care Pharmacy",
+    role: "Data Analyst",
+    period: "02/2024 – 04/2024",
+    location: "Gbagada, Lagos",
+    points: [
+      "Developed a web application using Python and Django.",
+      "Contributed to a team project, designing and implementing a database management system.",
+      "Collaborated with QA engineers to identify and resolve bugs.",
+    ],
+  },
+];
+
+const skills = [
+  "Excel",
+  "Visual Studio Code",
+  "Python",
+  "Java",
+  "SQL",
+  "Data Structures",
+  "Algorithm Design",
+  "Debugging",
+  "Network Security",
+  "Accessibility",
+  "English",
+  "Italian (Intermediate)",
+];
+
+const profileStats = [
+  { value: "3.83", label: "CGPA" },
+  { value: "4+", label: "Internships" },
+  { value: "Expert", label: "Technical" },
+];
+
+export default function Portfolio() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="cv-page">
+      <div className="user-button-wrap">
+        {clerkEnabled ? <UserButton /> : null}
+      </div>
+
+      <section className="cv-shell">
+        <aside className="sidebar">
+          <div className="photo-panel">
+            <img src="/profile-placeholder.svg" alt="Nwufo Akachukwu Michael" />
+          </div>
+
+          <div className="profile-card">
+            <p className="eyebrow">Portfolio</p>
+            <h1>Nwufo Akachukwu Michael</h1>
+            <p className="location">Ogudu, Lagos</p>
+          </div>
+
+          <div className="contact-card">
+            <h2>Contact</h2>
+            <p>
+              <span>Email</span>
+              <a href="mailto:nwufomichael8@gmail.com">nwufomichael8@gmail.com</a>
+            </p>
+            <p>
+              <span>Phone</span>
+              <a href="tel:+2349023047692">09023047692</a>
+            </p>
+            <p>
+              <span>LinkedIn</span>
+              <a href="https://linkedin.com/in/Michael-nwufo" target="_blank" rel="noreferrer">
+                linkedin.com/in/Michael-nwufo
+              </a>
+            </p>
+          </div>
+
+          <div className="stats-grid">
+            {profileStats.map((stat) => (
+              <div className="stat-box" key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="chip-box">
+            <h3>Core strengths</h3>
+            <div className="chip-list">
+              {skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <div className="content-panel">
+          <section className="intro-panel">
+            <p className="eyebrow">Profile</p>
+            <p className="summary">
+              Computer Science student at Caleb University with hands-on experience across
+              data analysis, IT support, and banking technology, gained through internships
+              at UBA, Maxim, Nikky Taurus, and Spring Care Pharmacy.
+            </p>
+          </section>
+
+          <section className="cv-section">
+            <h2>Education</h2>
+            <div className="education-item">
+              <div className="row">
+                <strong>Caleb University</strong>
+                <span>10/2023 – Present</span>
+              </div>
+              <p>Bachelor&apos;s Degree in Computer Science</p>
+              <p>Imota, Lagos</p>
+              <p>Cumulative GPA: 3.83/4.20</p>
+            </div>
+
+            <div className="education-item">
+              <div className="row">
+                <strong>Queen Mary College</strong>
+                <span>09/2017 – 07/2023</span>
+              </div>
+              <p>Ogudu/Ojota, Lagos</p>
+              <p>Cumulative GPA: 3.95/4.00, CTA: 30</p>
+            </div>
+          </section>
+
+          <section className="cv-section">
+            <h2>Experience</h2>
+            {experience.map((job) => (
+              <article className="job-item" key={job.company}>
+                <div className="row job-header">
+                  <strong>{job.company}</strong>
+                  {job.period ? <span>{job.period}</span> : null}
+                </div>
+                <p className="role">{job.role}</p>
+                {job.location ? <p className="location-text">{job.location}</p> : null}
+                <ul>
+                  {job.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </section>
+
+          <section className="cv-section">
+            <h2>Technical Skills</h2>
+            <div className="skill-groups">
+              <div className="skill-group">
+                <strong>Software tools</strong>
+                <p>Excel, Visual Studio Code, SVN, Clang, Python, Java, SQL</p>
+              </div>
+              <div className="skill-group">
+                <strong>Computing principles</strong>
+                <p>Algorithm design, data structures, Big-O notation, testing and debugging, network security, accessibility, SQL and query languages</p>
+              </div>
+              <div className="skill-group">
+                <strong>Communication</strong>
+                <p>Written and oral communication in English and Italian (Intermediate)</p>
+              </div>
+              <div className="skill-group">
+                <strong>Technical &amp; computing proficiency</strong>
+                <p>Expert</p>
+              </div>
+            </div>
+          </section>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
